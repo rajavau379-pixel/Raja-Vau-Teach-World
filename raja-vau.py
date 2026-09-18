@@ -17,7 +17,7 @@ from datetime import datetime
 
 import os, sys
 
-# Raja Vau YouTube & WhatsApp Links
+# Professional Links
 youtube_link = "https://youtube.com/@raja-vau-teach-world?si=KeIo3GwUzYIrmbCI"
 whatsapp_link = "https://chat.whatsapp.com/K9E5ULcGZ7G0O15wwvodfy?s=sh&p=a&mlu=4&ilr=4"
 
@@ -27,15 +27,15 @@ github_keys_url = "https://raw.githubusercontent.com/rajavau379-pixel/Raja-Vau-T
 def first_step():
     os.system("clear")
     print("\033[1;35m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("\033[1;32m        🔒 RAJA VAU SCRIPT LOCKED 🔒")
+    print("\033[1;32m        🔒 SCRIPT SECURITY LOCK 🔒")
     print("\033[1;35m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
-    print("\033[1;32m JOIN YOUTUBE & WHATSAPP CHANNEL ✅ \033[0m\n")
-    print("\033[1;32m PEHLE YOUTUBE SUBSCRIBE AUR WHATSAPP JOIN KARO ✅ \033[0m\n")
+    print("\033[1;32m STEP 1: JOIN YOUTUBE & WHATSAPP CHANNEL ✅ \033[0m\n")
+    print("\033[1;32m STEP 2: SUBSCRIBE AND JOIN TO GET ACCESS ✅ \033[0m\n")
 
     os.system(f'xdg-open {youtube_link}')
     os.system(f'xdg-open {whatsapp_link}')
 
-    input("\n[↩] JAB SUBSCRIBE AUR JOIN KAR LENA TAB ENTER DABAO...")
+    input("\n[↩] PRESS ENTER AFTER SUBSCRIBING AND JOINING...")
 
 def check_key():
     try:
@@ -45,14 +45,16 @@ def check_key():
         print("\n\033[1;31m[×] INTERNET CONNECTION ERROR OR INVALID URL!\033[0m")
         sys.exit()
 
-    user_key = input("\n[?] ENTER YOUR KEY: ")
+    user_key = input("\n[?] ENTER ACCESS KEY: ")
     
     if user_key.strip() in [key.strip() for key in approved_keys]:
-        print("\n\033[1;32mWELCOME TO RAJA VAU TEACH WORLD")
-        print("YOUR KEY APPROVED\033[0m\n")
+        print("\n\033[1;32m========================================")
+        print("   WELCOME TO RAJA VAU TEACH WORLD")
+        print("   YOUR ACCESS KEY IS APPROVED SUCCESSFULLY")
+        print("========================================\033[0m\n")
         time.sleep(2)
     else:
-        print("\n\033[1;31m[×] INVALID KEY! PLEASE SUBSCRIBE TO YOUTUBE CHANNEL FIRST.\033[0m")
+        print("\n\033[1;31m[×] INVALID ACCESS KEY! PLEASE SUBSCRIBE TO THE CHANNEL FIRST.\033[0m")
         sys.exit()
 
 # Run Approval / Key System First
@@ -74,13 +76,13 @@ requests.urllib3.disable_warnings()
 
 # Initial setup and promotion
 os.system('clear')
-print(' \x1b[38;5;46mRAJA VAU SERVER LOADING....')
-os.system ('espeak -a 300 " WELLCOME TO Raja Vau TOOL "')
+print(' \x1b[38;5;46mSYSTEM SERVER LOADING....')
+os.system ('espeak -a 300 " WELCOME TO RAJA VAU TOOL "')
 
 os.system('pip uninstall -y requests chardet urllib3 idna certifi')
 os.system('python -m pip install --upgrade chardet urllib3 idna certifi requests')
 os.system('python -m pip install --upgrade httpx beautifulsoup4')
-print('loading Modules ...\n')
+print('LOADING MODULES ...\n')
 os.system('clear')
 
 os.system(f'xdg-open {youtube_link}')
@@ -117,7 +119,7 @@ class sec:
             self.fuck()
 
     def fuck(self):
-        print(' \x1b[1;32m Congratulations ! ')
+        print(' \x1b[1;32m SECURITY ALERT! ')
         self.linex()
         exit()
 
@@ -203,15 +205,15 @@ def ____banner____():
 █████   ███████ ██ ██ ██ ██ ███████ ██
 ██  ██  ██   ██ ██  █  ██ ██   ██ ██
 ██   ██ ██   ██ ██     ██ ██   ██ ███████                                               
-\033[1;35m[+]PEHCHAN TO SAB SE HAI PAR BHAROSHA KHUDPE HE")   
+\033[1;35m[+] PROFESSIONAL FACEBOOK OLD ID CLONING TOOL")   
  \033[1;32m----------------------------------------------                           
- \033[1;32m[+] OWNER  :       RAJA VAU 💞 KAMAL       💞🅛︎🅞︎ⓥⓔ💞
- \033[1;33m[+] BESTIE :       RAJA VAU 💞 KAMAL        ….. (¯`v´¯)♥
- \033[1;33m[+] BESTU  :       RAJA VAU 💞 KAMAL    🫨…….•.¸.•´💞
- \033[1;33m[+] TOOLS  :       FB💞OLD🥵CLONIC 🫨….¸.•´💞
- \033[1;33m[+] STATUS :       RAJA VAU & KAMAL KEY APROVEL 🫨… (♡💞
+ \033[1;32m[+] DEVELOPER :       RAJA VAU & KAMAL
+ \033[1;33m[+] TOOL TYPE :       ADVANCED CRACKER
+ \033[1;33m[+] PLATFORM  :       TERMUX / LINUX
+ \033[1;33m[+] VERSION   :       v3.0 OFFICIAL
+ \033[1;33m[+] STATUS    :       SECURE & VERIFIED
   \033[1;32m----------------------------------------------
-\033[1;35m[+]CHAHRE HASIPE MATJANA DIL KABRUSTAN BANAYE HUON """)
+\033[1;35m[+] SECURE PERFORMANCE WITH HIGH SPEED PROCESSING """)
 
 loop=0
 tl=0
@@ -328,11 +330,11 @@ def old_One():
     print('        \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mMETHOD 1')
     print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mMETHOD 2')
     linex()
-    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mCHOICE {W}(A/B): {Y}").strip().upper()
+    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mCHOICE {W}(A/B): {Y}").strip().upper()
     with tred(max_workers=30) as pool:
         ____banner____()
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
         linex()
         for mal in user:
             uid = star + mal
@@ -348,11 +350,11 @@ def old_Tow():
     user = []
     ____banner____()
     print(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mOLD CODE {Y}:{G} 2010-2014")
-    ask = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mSELECT {Y}:{G} ")
+    ask = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mSELECT {Y}:{G} ")
     linex()
     ____banner____()
     print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mSELECT {Y}:{G} ")
+    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mSELECT {Y}:{G} ")
     linex()
     prefixes = ['100003', '100004']
     for _ in range(int(limit)):
