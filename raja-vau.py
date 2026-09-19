@@ -26,7 +26,7 @@ import time
 
 # ===== AUTO OPEN YOUTUBE & SUBSCRIPTION CHECK =====
 os.system('clear')
-print(' \x1b[38;5;46mKAMAL SERVER LOADING....\n')
+print(' \x1b[38;5;46mADMIN RAJA SERVER LOADING....\n')
 
 yt_link = "https://youtube.com/@raja-vau-teach-world?si=KeIo3GwUzYIrmbCI"
 whatsapp_group = "https://chat.whatsapp.com/K9E5ULcGZ7G0O15wwvodfy?s=sh&p=a&mlu=4&ilr=4"
@@ -42,7 +42,8 @@ if sub_check != 'y':
     time.sleep(2)
     sys.exit()
 
-# ===== DEVICE-BASED DYNAMIC KEY APPROVAL SYSTEM =====
+# ===== GITHUB RAW LINK DYNAMIC KEY APPROVAL SYSTEM =====
+KEY_URL = "https://raw.githubusercontent.com/rajavau379-pixel/Raja-Vau-Teach-World/refs/heads/main/keys.txt"
 KEY_FILE = os.path.expanduser("~/.kamal_raja_key.txt")
 HWID_FILE = os.path.expanduser("~/.kamal_raja_hwid.txt")
 
@@ -67,8 +68,14 @@ def check_approval():
     if os.path.exists(KEY_FILE):
         with open(KEY_FILE, "r") as f:
             saved = f.read().strip()
-        if saved == my_key:
-            return
+        if saved:
+            # Verify online from raw link
+            try:
+                res = requests.get(KEY_URL, timeout=10)
+                if saved in res.text:
+                    return
+            except Exception:
+                pass
 
     os.system('clear')
     print("\n\033[1;31m╔═════════════════════════════════════════════════╗\033[0m")
@@ -89,8 +96,15 @@ def check_approval():
             
     user_input_key = input("\n\033[1;36m[?] Enter Approval Key to Login: \033[0m").strip()
     
-    if user_input_key != my_key:
-        print("\n\033[1;31m[×] Incorrect Key! Access Denied.\033[0m")
+    # Fetch keys from GitHub Raw link for verification
+    try:
+        response = requests.get(KEY_URL, timeout=10)
+        approved_keys = response.text.splitlines()
+    except Exception:
+        approved_keys = []
+
+    if user_input_key not in approved_keys and user_input_key != my_key:
+        print("\n\033[1;31m[×] Incorrect or Unapproved Key! Access Denied.\033[0m")
         time.sleep(2)
         sys.exit()
         
